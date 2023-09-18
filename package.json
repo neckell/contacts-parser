@@ -1,9 +1,19 @@
 {
-  "name": "contacts-parser",
-  "version": "1.0.0",
+  "name": "google-contacts-parser",
+  "version": "1.0.1",
   "type": "module",
-  "description": "Parser for contact list",
+  "description": "Parser for outlook or google contact list (CSV)",
   "main": "parser.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neckell/contacts-parser.git"
+  },
+  "keywords": [
+    "contacts",
+    "google",
+    "outlook",
+    "parser"
+  ],
   "scripts": {
     "start": "node parser.js",
     "test": "uvu -r tsm src/tests"
