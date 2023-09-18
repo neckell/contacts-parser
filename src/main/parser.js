@@ -2,18 +2,22 @@ import csv from 'csv-parser';
 import fs from 'fs';
 import { createObjectCsvWriter as csvWriter } from 'csv-writer';
 import stripBomStream from 'strip-bom-stream';
-import { isNullOrEmpty } from './validations.js';
+import { isNullOrEmpty } from './validations';
+
 
 const results = [];
 const emails = new Set();
 
-const processPhone = (phone) => {
+export const processPhone = (phone, countryCode) => {
   if (isNullOrEmpty(phone)) return phone;
-  if (phone.startsWith('+549')) return '+549' + phone.substring(4);
-  if (phone.startsWith('+54')) return '+549' + phone.substring(3);
-  if (phone.startsWith('54')) return '+549' + phone.substring(2);
-  if (phone.startsWith('0')) return '+549' + phone.substring(1);
-  return '+549' + phone;
+  const prefix = `+${countryCode}9`
+  let shift = 0;
+  if (phone.startsWith(prefix)) shift = prefix.length;
+  else if (phone.startsWith(`+${countryCode}`)) shift = countryCode.length + 1;
+  else if (phone.startsWith(`${countryCode}9`)) shift = countryCode.length + 1;
+  else if (phone.startsWith(`${countryCode}`)) shift = countryCode.length;
+  else if (phone.startsWith('0')) shift = 1;
+  return prefix + phone.substring(shift);
 };
 
 const hasName = (first, last) =>

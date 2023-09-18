@@ -5,8 +5,8 @@
   "description": "Parser for contact list",
   "main": "parser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node parser.js"
+    "start": "node parser.js",
+    "test": "uvu -r tsm src/tests"
   },
   "author": "Nicolas Eckell",
   "license": "MIT",
@@ -15,5 +15,9 @@
     "csv-writer": "^1.6.0",
     "fs": "^0.0.1-security",
     "strip-bom-stream": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsm": "^2.3.0",
+    "uvu": "^0.5.6"
   }
 }
