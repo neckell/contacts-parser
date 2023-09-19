@@ -1,6 +1,6 @@
 import { isNullOrEmpty } from "./validations.mjs";
 
-export const parsePhone = (phone, countryCode) => {
+export const _parsePhone = (phone, countryCode) => {
   if (isNullOrEmpty(phone)) return phone;
   const prefix = `+${countryCode}9`
   let shift = 0;

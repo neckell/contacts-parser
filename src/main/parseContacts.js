@@ -4,7 +4,7 @@ import stripBomStream from 'strip-bom-stream';
 import { writeToString } from '@fast-csv/format';
 import { parseOutlookRow } from './parseOutlookRow.mjs';
 
-export const parseContactsCSV = (buffer, countryCode) => {
+export const _parseContacts = (buffer, countryCode) => {
   const results = [];
   const emails = new Set();
 
