@@ -1,6 +1,6 @@
 import { suite } from 'uvu';
-import assert from 'uvu/assert';
-import { isNullOrEmpty } from '../main/validations';
+import * as assert from 'uvu/assert';
+import { isNullOrEmpty } from '../main/validations.mjs';
 
 const IsNullOrEmptyTest = suite('isNullOrEmpty');
 
@@ -19,10 +19,12 @@ IsNullOrEmptyTest('returns true for undefined values', () => {
 
 IsNullOrEmptyTest('returns true for empty arrays', () => {
   assert.is(isNullOrEmpty([]), true);
+  assert.is(isNullOrEmpty([0]), false);
 });
 
 IsNullOrEmptyTest('returns true for empty objects', () => {
   assert.is(isNullOrEmpty({}), true);
+  assert.is(isNullOrEmpty(new Object()), true);
 });
 
 IsNullOrEmptyTest.run();

@@ -12,7 +12,18 @@ npm install google-contacts-parser
 
 ## Usage
 
-WIP
+```
+import parseContacts from "google-contacts-parser";
+...
+  // assuming file a buffer
+  parseContacts(buffer)
+    .then((outputPath) => {
+      res.status(200).send({ message: 'File uploaded and parsed successfully.', file: outputPath });
+    })
+    .catch((error) => {
+      res.status(500).send({ error: error.message });
+    });
+```
 
 ## Function
 

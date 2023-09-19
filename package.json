@@ -1,12 +1,12 @@
 {
   "name": "google-contacts-parser",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "type": "module",
   "description": "Parser for outlook or google contact list (CSV)",
-  "main": "parser.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/neckell/contacts-parser.git"
+    "url": "https://github.com/neckell/google-contacts-parser.git"
   },
   "keywords": [
     "contacts",
@@ -14,16 +14,17 @@
     "outlook",
     "parser"
   ],
+  "types": "index.d.ts",
   "scripts": {
-    "start": "node parser.js",
     "test": "uvu -r tsm src/tests"
   },
   "author": "Nicolas Eckell",
   "license": "MIT",
   "dependencies": {
+    "@fast-csv/format": "^4.3.5",
+    "coverage": "^0.4.1",
     "csv-parser": "^3.0.0",
-    "csv-writer": "^1.6.0",
-    "fs": "^0.0.1-security",
+    "stream": "^0.0.2",
     "strip-bom-stream": "^5.0.0"
   },
   "devDependencies": {
