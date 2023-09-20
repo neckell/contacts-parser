@@ -7,27 +7,42 @@ This is a parser for Outlook or Google contact lists exported as CSV files.
 To use this parser in your project, you can install it via npm:
 
 ```bash
-npm install google-contacts-parser
+npm install contacts-parser
 ```
 
 ## Usage
 
 ```
-import parseContacts from "google-contacts-parser";
+import { parseContacts } from "contacts-parser";
+
 ...
-  // assuming file a buffer
-  parseContacts(buffer)
-    .then((outputPath) => {
-      res.status(200).send({ message: 'File uploaded and parsed successfully.', file: outputPath });
-    })
-    .catch((error) => {
-      res.status(500).send({ error: error.message });
-    });
+
+export const editContacts = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const files: any = req?.files //using Multer as request middleware
+    if (isNullOrEmpty(files) || isNullOrEmpty(files['contacts'])) {
+      res.sendStatus(400)
+      return;
+    }
+
+    const file = files['contacts'][0];
+    parseContacts(file.buffer, '54')
+      .then((outputFile) => {
+        const base64 = Buffer.from(outputFile).toString('base64');
+        res.status(200).json({ data: base64 });
+      })
+      .catch((error) => {
+        res.status(500).send({ error: error?.message });
+      });
+  } catch (err: any) {
+    logger.fatal(`parseContacts error: ${err}`)
+    throw err;
+  }
+};  
 ```
-
-## Function
-
-WIP
 
 ## Testing
 

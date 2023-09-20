@@ -12,9 +12,9 @@ export const parseOutlookRow = (row, emails, countryCode) => {
   if (hasName(firstName, lastName) && !isNullOrEmpty(phone)) {
 
     row['Home Phone'] = ''
-    let newPhone = phone.replace(/[\s-]+/g, "")
+    let newPhone;
     if (phone.length > 7) {
-      newPhone = _parsePhone(newPhone, countryCode);
+      newPhone = _parsePhone(phone, countryCode);
       row['Mobile Phone'] = newPhone;
     } else {
       row['Mobile Phone'] = phone;

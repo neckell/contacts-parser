@@ -2,6 +2,7 @@ import { isNullOrEmpty } from "./validations.mjs";
 
 export const _parsePhone = (phone, countryCode) => {
   if (isNullOrEmpty(phone)) return phone;
+  phone = phone.replace(/[\s-]+/g, "");
   const prefix = `+${countryCode}9`
   let shift = 0;
   if (phone.startsWith(prefix)) shift = prefix.length;
